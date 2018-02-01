@@ -1,7 +1,10 @@
 package br.com.mv.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -21,8 +24,9 @@ public class People {
 
     private String email;
 
-    @OneToMany
-    private List<Phone> telefones;
+    @OneToMany(mappedBy = "people")
+    @JsonIgnore
+    private Collection<Phone> telefones;
 
     public Long getId() {
         return id;
@@ -62,14 +66,6 @@ public class People {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<Phone> getTelefones() {
-        return telefones;
-    }
-
-    public void setTelefones(List<Phone> telefones) {
-        this.telefones = telefones;
     }
 
     public People(String nome, String cpf, Date dataNascimento, String email) {
