@@ -28,6 +28,6 @@ public class People {
 
     private String email;
 
-    @OneToMany(mappedBy = "people")
+    @OneToMany(mappedBy = "people", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Phone> telefones;
 }
